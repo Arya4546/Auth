@@ -7,6 +7,11 @@ const router = express.Router();
 // Email/Password login
 router.post("/login", login);
 router.post("/register", register);
+router.post("/verify-otp", verifyOtp);
+
+router.post("/forgot-password", forgotPasswordSendOtp);
+router.post("/verify-forgot-otp", verifyForgotOtp);
+router.post("/reset-password", resetPassword);
 
 // Google OAuth
 router.get(
