@@ -1,6 +1,13 @@
 import express from "express";
 import passport from "../config/passport.js";
-import { login, register } from "../controllers/auth.controller.js";
+import {
+  login,
+  register,
+  verifyOtp,
+  forgotPasswordSendOtp,
+  verifyForgotOtp,
+  resetPassword
+} from "../controllers/auth.controller.js";
 
 const router = express.Router();
 
