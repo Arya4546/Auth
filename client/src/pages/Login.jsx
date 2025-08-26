@@ -22,7 +22,8 @@ const AnimatedButton = ({ text, onClick, icon, variant = "primary" }) => {
   const [clickedBtn, setClickedBtn] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
 
-  const handleAnimatedClick = () => {
+  const handleAnimatedClick = (e) => {
+    e.preventDefault();
     setClickedBtn(text);
     setIsLoading(true);
     onClick?.();
@@ -93,7 +94,6 @@ const AnimatedButton = ({ text, onClick, icon, variant = "primary" }) => {
   );
 };
 
-
 const NeuromorphicInput = ({
   icon: Icon,
   type,
@@ -135,7 +135,7 @@ const NeuromorphicInput = ({
 
 export default function Login() {
   const [showPwd, setShowPwd] = useState(false);
-  const [tab, setTab] = useState("login"); 
+  const [tab, setTab] = useState("login");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [otp, setOtp] = useState("");
@@ -170,7 +170,10 @@ export default function Login() {
       return;
     }
     try {
-      const { data } = await axios.post(`${API}/auth/login`, { email, password });
+      const { data } = await axios.post(`${API}/auth/login`, {
+        email,
+        password
+      });
       showMessage(data.message || "Login successful!", "success");
       if (data.token) localStorage.setItem("token", data.token);
       setTimeout(() => {
@@ -188,7 +191,9 @@ export default function Login() {
       return;
     }
     try {
-      const { data } = await axios.post(`${API}/auth/forgot-password`, { email });
+      const { data } = await axios.post(`${API}/auth/forgot-password`, {
+        email
+      });
       showMessage(data.message || "OTP sent to your email!", "success");
       setTab("forgot-otp");
     } catch (err) {
@@ -203,7 +208,10 @@ export default function Login() {
       return;
     }
     try {
-      const { data } = await axios.post(`${API}/auth/verify-forgot-otp`, { email, otp });
+      const { data } = await axios.post(`${API}/auth/verify-forgot-otp`, {
+        email,
+        otp
+      });
       showMessage(data.message || "OTP verified successfully!", "success");
       setTab("forgot-reset");
     } catch (err) {
@@ -218,7 +226,10 @@ export default function Login() {
       return;
     }
     try {
-      const { data } = await axios.post(`${API}/auth/reset-password`, { email, newPassword });
+      const { data } = await axios.post(`${API}/auth/reset-password`, {
+        email,
+        newPassword
+      });
       showMessage(data.message || "Password reset successfully!", "success");
       setTab("login");
       setPassword("");
@@ -313,6 +324,7 @@ export default function Login() {
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: 20 }}
+              onSubmit={(e) => e.preventDefault()}
               className="space-y-4"
             >
               <NeuromorphicInput
@@ -336,13 +348,22 @@ export default function Login() {
                 onClick={handleLogin}
                 icon={<FaCheckCircle />}
               />
-              <div className="text-center">
+              <div className="flex justify-between items-center text-xs mt-2">
                 <button
                   type="button"
                   onClick={() => setTab("forgot-email")}
-                  className="text-gray-400 hover:text-red-400 transition-colors text-xs"
+                  className="text-gray-400 hover:text-red-400 transition-colors z-10 relative"
+                  style={{ pointerEvents: "auto" }}
                 >
                   Forgot password?
+                </button>
+                <button
+                  type="button"
+                  onClick={() => (window.location.href = "/signup")}
+                  className="text-gray-400 hover:text-red-400 transition-colors z-10 relative"
+                  style={{ pointerEvents: "auto" }}
+                >
+                  Don’t have an account? Sign Up
                 </button>
               </div>
             </motion.form>
@@ -353,6 +374,7 @@ export default function Login() {
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: 20 }}
+              onSubmit={(e) => e.preventDefault()}
               className="space-y-4"
             >
               <NeuromorphicInput
@@ -371,7 +393,8 @@ export default function Login() {
                 <button
                   type="button"
                   onClick={() => setTab("login")}
-                  className="text-gray-400 hover:text-red-400 transition-colors text-xs"
+                  className="text-gray-400 hover:text-red-400 transition-colors text-xs z-10 relative"
+                  style={{ pointerEvents: "auto" }}
                 >
                   Back to login
                 </button>
@@ -384,6 +407,7 @@ export default function Login() {
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: 20 }}
+              onSubmit={(e) => e.preventDefault()}
               className="space-y-4"
             >
               <NeuromorphicInput
@@ -402,7 +426,8 @@ export default function Login() {
                 <button
                   type="button"
                   onClick={() => setTab("forgot-email")}
-                  className="text-gray-400 hover:text-red-400 transition-colors text-xs"
+                  className="text-gray-400 hover:text-red-400 transition-colors text-xs z-10 relative"
+                  style={{ pointerEvents: "auto" }}
                 >
                   Back to forgot password
                 </button>
@@ -415,6 +440,7 @@ export default function Login() {
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: 20 }}
+              onSubmit={(e) => e.preventDefault()}
               className="space-y-4"
             >
               <NeuromorphicInput
@@ -433,7 +459,8 @@ export default function Login() {
                 <button
                   type="button"
                   onClick={() => setTab("login")}
-                  className="text-gray-400 hover:text-red-400 transition-colors text-xs"
+                  className="text-gray-400 hover:text-red-400 transition-colors text-xs z-10 relative"
+                  style={{ pointerEvents: "auto" }}
                 >
                   Back to login
                 </button>
