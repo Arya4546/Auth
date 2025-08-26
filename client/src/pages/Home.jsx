@@ -25,7 +25,7 @@ const Navbar = ({ userName, profilePic, onLogout }) => {
             className="flex items-center"
           >
             <span className="text-xl sm:text-2xl font-bold bg-gradient-to-r from-white via-red-200 to-pink-200 bg-clip-text text-transparent">
-              PremiumApp
+              Auth App
             </span>
           </motion.div>
 
