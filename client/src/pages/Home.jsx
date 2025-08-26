@@ -173,7 +173,7 @@ export default function Home() {
             ) : (
               <motion.div className="space-y-6">
                 <p className="text-gray-200 text-xl sm:text-2xl font-semibold">
-                  Hello {userName}! 🚀
+                  Hello {userName}! 
                 </p>
                 <motion.button
                   whileHover={{ scale: 1.05, rotateY: 5 }}
