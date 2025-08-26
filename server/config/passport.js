@@ -52,7 +52,7 @@ passport.use(
     {
       clientID: process.env.GITHUB_CLIENT_ID,
       clientSecret: process.env.GITHUB_CLIENT_SECRET,
-      callbackURL: "/auth/github/callback",
+      callbackURL: `${process.env.BACKEND_URL}/auth/github/callback`,
     },
     async (accessToken, refreshToken, profile, done) => {
       try {
@@ -78,5 +78,6 @@ passport.use(
     }
   )
 );
+
 
 export default passport;
