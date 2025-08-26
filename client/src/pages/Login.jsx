@@ -112,7 +112,7 @@ const NeuromorphicInput = ({
           "inset 8px 8px 16px rgba(0, 0, 0, 0.8), inset -8px -8px 16px rgba(255, 255, 255, 0.05)"
       }}
     >
-      <Icon className="absolute left-3 top-3 text-gray-400 group-focus-within:text-red-400 transition-colors duration-300 text-sm sm:text-base" />
+      <Icon className="absolute left-4 top-4 text-gray-400 group-focus-within:text-red-400 transition-colors duration-300 text-sm sm:text-base" />
       <input
         type={type}
         placeholder={placeholder}
@@ -124,7 +124,7 @@ const NeuromorphicInput = ({
         <button
           type="button"
           onClick={toggleShowPassword}
-          className="absolute right-3 top-3 text-gray-400 hover:text-red-400 transition-colors duration-300 text-sm sm:text-base"
+          className="absolute right-4 top-4 text-gray-400 hover:text-red-400 transition-colors duration-300 text-sm sm:text-base"
         >
           {type === "text" ? <FaEyeSlash /> : <FaEye />}
         </button>
@@ -499,3 +499,5 @@ export default function Login() {
     </div>
   );
 }
+
+
