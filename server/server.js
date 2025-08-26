@@ -1,7 +1,14 @@
 import express from "express";
 import "dotenv/config";
 import { connectDB } from "./config/db.js";
-import authRoutes from "./routes/auth.routes.js";
+import {
+  login,
+  register,
+  verifyOtp,
+  forgotPasswordSendOtp,
+  verifyForgotOtp,
+  resetPassword
+} "./routes/auth.routes.js";
 import userRoutes from "./routes/user.routes.js";
 import passport from "./config/passport.js";
 import cors from "cors";
